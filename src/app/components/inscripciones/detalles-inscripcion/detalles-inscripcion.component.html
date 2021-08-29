@@ -1,0 +1,27 @@
+<div *ngIf="inscripcion">
+  <h3>Fecha Inscripción: {{ inscripcion?.fechaCreacion | date: "medium" }}</h3>
+  <h5>
+    Fecha Actualizacion: {{ inscripcion?.fechaActualizacion | date: "medium" }}
+  </h5>
+  <ul class="list-group">
+    <li class="list-group-item">
+      Alumno:
+      {{ inscripcion.alumno.nombres + " " + inscripcion.alumno.apellidos }}
+    </li>
+    <li class="list-group-item">
+      Materia:
+      {{ inscripcion.materia.nombre }}
+      <ul class="list-group">
+        <li class="list-group-item">
+          Descripcion: {{ inscripcion.materia.descripcion }}
+        </li>
+        <li class="list-group-item">
+          Hora Inicio: {{ inscripcion.materia.horaInicio }}
+        </li>
+        <li class="list-group-item">
+          Hora Final: {{ inscripcion.materia.horaInicio }}
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

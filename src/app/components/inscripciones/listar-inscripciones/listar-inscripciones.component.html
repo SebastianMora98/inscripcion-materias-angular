@@ -1,0 +1,83 @@
+<div class="row mt-3">
+  <div class="col-lg-6">
+    <h3>Listado Inscripciones</h3>
+  </div>
+  <div class="col-lg-6">
+    <button class="btn btn-primary float-end" routerLink="/agregar-inscripcion">
+      Agregar Inscripción
+    </button>
+  </div>
+</div>
+
+<table *ngIf="inscripciones.length" class="table table-hover mt-3">
+  <thead>
+    <tr>
+      <th scope="col">Detalles</th>
+      <th scope="col">Alumno</th>
+      <th scope="col">Materia</th>
+      <th scope="col">Fecha Inscripción</th>
+      <th scope="col">Fecha Actualización</th>
+
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let inscripcion of inscripciones">
+      <th scope="row">
+        <a
+          [routerLink]="[
+            '/detalles-inscripcion/alumno/',
+            inscripcion.alumnoId,
+            'materia',
+            inscripcion.materiaId
+          ]"
+        >
+          Ver Detalles</a
+        >
+      </th>
+
+      <th>
+        <a [routerLink]="['/detalles-alumno', inscripcion.alumnoId]">
+          {{ inscripcion.alumnoId }}</a
+        >
+        - {{ inscripcion?.alumno?.nombres }}
+      </th>
+      <td>
+        <a [routerLink]="['/detalles-materia', inscripcion.materiaId]">
+          {{ inscripcion.materiaId }}</a
+        >
+        - {{ inscripcion?.materia?.nombre }}
+      </td>
+      <td>{{ inscripcion.fechaCreacion | date: "medium" }}</td>
+      <td>{{ inscripcion.fechaActualizacion | date: "medium" }}</td>
+      <td style="width: 10%">
+        <button
+          [routerLink]="[
+            '/editar-inscripcion/alumno/',
+            inscripcion.alumnoId,
+            'materia',
+            inscripcion.materiaId
+          ]"
+          class="btn btn-primary btn-sm float-end"
+        >
+          Editar
+        </button>
+      </td>
+      <td style="width: 10%">
+        <button
+          (click)="
+            deleteInscripcion(inscripcion.alumnoId, inscripcion.materiaId)
+          "
+          class="btn btn-danger btn-sm float-end"
+        >
+          Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!inscripciones.length" class="row mt-5">
+  <h5>No hay inscripciones registradas</h5>
+</div>

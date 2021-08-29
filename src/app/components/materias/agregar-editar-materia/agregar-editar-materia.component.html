@@ -1,0 +1,75 @@
+<h3 class="mt-3">{{ action }} Materia</h3>
+<form
+  [formGroup]="formAgregarEditarMateria"
+  (ngSubmit)="agregarEditarMateria()"
+>
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre</label>
+    <input
+      formControlName="nombre"
+      type="text"
+      class="form-control"
+      id="nombres"
+      autocomplete="off"
+    />
+    <span class="text-danger" *ngIf="nombre?.invalid && nombre?.touched"
+      >Nombre es requerido</span
+    >
+  </div>
+  <div class="mb-3">
+    <label for="descripcion" class="form-label">Descripción</label>
+    <input
+      formControlName="descripcion"
+      type="text"
+      class="form-control"
+      id="descripcion"
+      autocomplete="off"
+    />
+    <span
+      class="text-danger"
+      *ngIf="descripcion?.invalid && descripcion?.touched"
+      >La descripción es requerida</span
+    >
+  </div>
+
+  <div class="mb-3">
+    <label for="horaInicio" class="form-label">Hora Inicio</label>
+    <input
+      formControlName="horaInicio"
+      type="time"
+      class="form-control"
+      id="horaInicio"
+      autocomplete="off"
+    />
+    <span class="text-danger" *ngIf="horaInicio?.invalid && horaInicio?.touched"
+      >Hora Inicio es requerida</span
+    >
+  </div>
+  <div class="mb-3">
+    <label for="horaFinal" class="form-label">Hora Final</label>
+    <input
+      formControlName="horaFinal"
+      type="time"
+      class="form-control"
+      id="horaFinal"
+      autocomplete="off"
+    />
+    <span class="text-danger" *ngIf="horaFinal?.invalid && horaFinal?.touched"
+      >Hora Final es requerida</span
+    >
+  </div>
+  <button
+    [disabled]="formAgregarEditarMateria.invalid"
+    type="submit"
+    class="btn btn-primary float-end"
+  >
+    Aceptar
+  </button>
+  <button
+    type="button"
+    [routerLink]="['/listar-materias']"
+    class="btn btn-secondary"
+  >
+    Volver
+  </button>
+</form>

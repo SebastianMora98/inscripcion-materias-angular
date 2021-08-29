@@ -1,0 +1,58 @@
+<div class="row mt-3">
+  <div class="col-lg-6">
+    <h3>Listado Materias</h3>
+  </div>
+  <div class="col-lg-6">
+    <button class="btn btn-primary float-end" routerLink="/agregar-materias">
+      Agregar Materia
+    </button>
+  </div>
+</div>
+
+<table *ngIf="materias.length" class="table table-hover mt-3">
+  <thead>
+    <tr>
+      <th scope="col">Código</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">horaInicio</th>
+      <th scope="col">horaFinal</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let materia of materias">
+      <th scope="row">
+        <a [routerLink]="['/detalles-materia', materia.id]">
+          {{ materia.id }}</a
+        >
+      </th>
+      <td>{{ materia.nombre }}</td>
+      <td>{{ materia.descripcion }}</td>
+      <td>{{ materia.horaInicio }}</td>
+      <td>{{ materia.horaFinal }}</td>
+
+      <td style="width: 10%">
+        <button
+          [routerLink]="['/editar-materia', materia.id]"
+          class="btn btn-primary btn-sm float-end"
+        >
+          Editar
+        </button>
+      </td>
+      <td style="width: 10%">
+        <button
+          (click)="deleteMateria(materia.id)"
+          class="btn btn-danger btn-sm float-end"
+        >
+          Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!materias.length" class="row mt-5">
+  <h5>No hay materias registradas</h5>
+</div>

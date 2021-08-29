@@ -1,0 +1,53 @@
+<div class="row mt-3">
+  <div class="col-lg-6">
+    <h3>Listado Alumnos</h3>
+  </div>
+  <div class="col-lg-6">
+    <button class="btn btn-primary float-end" routerLink="/agregar-alumno">
+      Agregar Alumno
+    </button>
+  </div>
+</div>
+
+<table *ngIf="alumnos.length" class="table table-hover mt-3">
+  <thead>
+    <tr>
+      <th scope="col">Código</th>
+      <th scope="col">Identificación</th>
+      <th scope="col">Nombres</th>
+      <th scope="col">Apellidos</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let alumno of alumnos">
+      <th scope="row">
+        <a [routerLink]="['/detalles-alumno', alumno.id]"> {{ alumno.id }}</a>
+      </th>
+      <td>{{ alumno.identificacion }}</td>
+      <td>{{ alumno.nombres }}</td>
+      <td>{{ alumno.apellidos }}</td>
+      <td style="width: 10%">
+        <button
+          [routerLink]="['/editar-alumno', alumno.id]"
+          class="btn btn-primary btn-sm float-end"
+        >
+          Editar
+        </button>
+      </td>
+      <td style="width: 10%">
+        <button
+          (click)="deleteAlumno(alumno.id)"
+          class="btn btn-danger btn-sm float-end"
+        >
+          Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!alumnos.length" class="row mt-5">
+  <h5>No hay alumnos registrados</h5>
+</div>

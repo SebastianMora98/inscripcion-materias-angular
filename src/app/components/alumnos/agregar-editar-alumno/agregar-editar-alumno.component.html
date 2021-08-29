@@ -1,0 +1,58 @@
+<h3 class="mt-3">{{ action }} Alumno</h3>
+<form [formGroup]="formAgregarEditarAlumno" (ngSubmit)="agregarEditarAlumno()">
+  <div class="mb-3">
+    <label for="identificacion" class="form-label">Identificación</label>
+    <input
+      formControlName="identificacion"
+      type="text"
+      class="form-control"
+      id="identificacion"
+      autocomplete="off"
+    />
+    <span
+      class="text-danger"
+      *ngIf="identificacion?.invalid && identificacion?.touched"
+      >La identificación es requerida</span
+    >
+  </div>
+  <div class="mb-3">
+    <label for="nombres" class="form-label">Nombres</label>
+    <input
+      formControlName="nombres"
+      type="text"
+      class="form-control"
+      id="nombres"
+      autocomplete="off"
+    />
+    <span class="text-danger" *ngIf="nombres?.invalid && nombres?.touched"
+      >Nombres es requerido</span
+    >
+  </div>
+  <div class="mb-3">
+    <label for="apellidos" class="form-label">Apellidos</label>
+    <input
+      formControlName="apellidos"
+      type="text"
+      class="form-control"
+      id="apellidos"
+      autocomplete="off"
+    />
+    <span class="text-danger" *ngIf="apellidos?.invalid && apellidos?.touched"
+      >Apellidos es requerido</span
+    >
+  </div>
+  <button
+    [disabled]="formAgregarEditarAlumno.invalid"
+    type="submit"
+    class="btn btn-primary float-end"
+  >
+    Aceptar
+  </button>
+  <button
+    type="button"
+    [routerLink]="['/listar-alumnos']"
+    class="btn btn-secondary"
+  >
+    Volver
+  </button>
+</form>

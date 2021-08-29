@@ -1,0 +1,32 @@
+<div *ngIf="materia">
+  <h3>Materia: {{ materia.nombre }}</h3>
+  <ul class="list-group">
+    <li class="list-group-item">Codigo: {{ materia.id }}</li>
+    <li class="list-group-item">Hora Inicio: {{ materia.horaInicio }}</li>
+    <li class="list-group-item">Hora Final: {{ materia.horaFinal }}</li>
+  </ul>
+  <hr class="my-4" />
+  <h5>Alumnos Inscritos</h5>
+
+  <table *ngIf="materia.alumnos?.length" class="table table-hover mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Codigo</th>
+        <th scope="col">Identificación</th>
+        <th scope="col">Nombres</th>
+        <th scope="col">Apellidos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let alumnos of materia.alumnos">
+        <td>{{ alumnos.alumno?.id }}</td>
+        <td>{{ alumnos.alumno?.identificacion }}</td>
+        <td>{{ alumnos.alumno?.nombres }}</td>
+        <td>{{ alumnos.alumno?.apellidos }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="!materia.alumnos" class="row mt-5">
+    <h5>No hay alumnos registradas</h5>
+  </div>
+</div>
